@@ -25,7 +25,9 @@ pipeline {
 
         stage('Sonar Analysis') {
             steps {
-                sh "mvn sonar:sonar -Dsonar.projectKey=devops_java -Dsonar.host.url=http://192.168.50.4:9000 -Dsonar.login=${SONAR_TOKEN}"
+                withSonarQubeEnv('LunarCubeServer') {
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=devops_java"
+                }
             }
         }
 
