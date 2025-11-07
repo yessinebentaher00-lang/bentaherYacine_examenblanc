@@ -40,11 +40,16 @@ pipeline {
                 sh 'mvn clean verify'
             }
         }
-        stage('Dependency Check (SCA)') {
-            steps {
-                sh 'mvn org.owasp:dependency-check-maven:check'
-                archiveArtifacts artifacts: 'target/dependency-check-report/dependency-check-report.json'
-            }
+        stage('OWASP Dependency-Check Vulnerabilities') {
+          steps {
+            dependencyCheck additionalArguments: ''' 
+                        -o './'
+                        -s './'
+                        -f 'ALL' 
+                        --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+        
+            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+          }
         }
         stage('Sonar Analysis') {
             steps {
