@@ -47,9 +47,7 @@ pipeline {
                 --enableExperimental
                 -f "ALL"
                 --prettyPrint
-            ''', odcInstallation: 'dependency-check'
-                        --prettyPrint''', odcInstallation: 'DP-Check'
-        
+            ''', odcInstallation: 'DP-Check'
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
           }
         }
