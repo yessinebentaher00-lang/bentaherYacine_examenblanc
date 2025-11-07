@@ -40,7 +40,12 @@ pipeline {
                 sh 'mvn clean verify'
             }
         }
-
+        stage('Dependency Check (SCA)') {
+            steps {
+                sh 'mvn org.owasp:dependency-check-maven:check'
+                archiveArtifacts artifacts: 'target/dependency-check-report/dependency-check-report.json'
+            }
+        }
         stage('Sonar Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
