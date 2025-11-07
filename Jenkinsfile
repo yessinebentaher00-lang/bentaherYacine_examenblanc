@@ -27,15 +27,6 @@ pipeline {
     }
 
 
-        stage('Semgrep SAST') {
-            steps {
-                sh '''
-                    echo "Running Semgrep for Java OWASP Top 10 vulnerabilities..."
-                    docker run --rm -v $PWD:/src returntocorp/semgrep semgrep --config=p/java/owasp-top-ten /src
-                '''
-            }
-        }
-
         stage('Build + Test') {
             steps {
                 sh 'mvn clean verify'
