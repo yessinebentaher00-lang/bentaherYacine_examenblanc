@@ -61,10 +61,11 @@ pipeline {
     post {
         always {
             emailext(
-                to: "yessinebentaher00@gmail.com",
-                subject: "Pipeline Result #${env.BUILD_NUMBER}",
-                body: "Here's Semgrep attached",
-                attachmentsPattern: 'semgrep-report.json'
+              to: "yessinebentaher00@gmail.com",
+              subject: "Pipeline Result #${env.BUILD_NUMBER}",
+              body: "Here's Semgrep attached",
+              attachmentsPattern: '**/semgrep-report.json',
+              attachLog: true
             )
         }
     }
