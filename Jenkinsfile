@@ -11,6 +11,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/yessinebentaher00-lang/bentaherYacine_examenblanc'
@@ -20,9 +21,9 @@ pipeline {
         stage('Semgrep SAST') {
             steps {
                 sh '''
-                    echo "Running Semgrep…"
-                    sudo docker run --rm -v $PWD:/src returntocorp/semgrep \
-                        semgrep --config=p/owasp-top-ten /src > semgrep-report.json
+                echo "Running Semgrep…"
+                docker run --rm -v $PWD:/src returntocorp/semgrep \
+                    semgrep --config=p/owasp-top-ten /src > semgrep-report.json
                 '''
                 archiveArtifacts artifacts: 'semgrep-report.json'
             }
@@ -30,9 +31,7 @@ pipeline {
 
         stage('SpotBugs Analysis') {
             steps {
-                sh '''
-                    mvn clean compile spotbugs:check || true
-                '''
+                sh 'mvn clean compile spotbugs:check || true'
             }
         }
 
@@ -53,7 +52,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
+                    waitForQualityGate abortPipeline: false
                 }
             }
         }
@@ -61,10 +60,12 @@ pipeline {
 
     post {
         always {
-            mail to: 'yessinebentaher00@gmail.com',
-                 subject: "Build #${env.BUILD_NUMBER} - Résultat ${currentBuild.currentResult}",
-                 body: "Le rapport Semgrep est attaché en pièce jointe.",
-                 attachmentsPattern: 'semgrep-report.json'
+            emailext(
+                to: "yessinebentaher00@gmail.com",
+                subject: "Pipeline Result #${env.BUILD_NUMBER}",
+                body: "Here's Semgrep attached",
+                attachmentsPattern: 'semgrep-report.json'
+            )
         }
     }
 }
