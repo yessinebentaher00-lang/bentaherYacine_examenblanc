@@ -81,7 +81,7 @@
                      <configuration>
                          <format>JSON</format>
                          <ossIndexUsername>yessinebentaher00@gmail.com</ossIndexUsername>
-                         <ossIndexPassword>yessineY65$</ossIndexPassword>
+                         <ossIndexPassword>yassineY65$</ossIndexPassword>
                          <outputDirectory>${project.build.directory}/dependency-check-report</outputDirectory>
                          <failBuildOnCVSS>10</failBuildOnCVSS>
                          
