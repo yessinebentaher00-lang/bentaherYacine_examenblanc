@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-             https://maven.apache.org/xsd/maven‑4.0.0.xsd">
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring‑boot‑starter‑parent</artifactId>
-        <version>3.4.5</version>
-        <relativePath/>
+        <version>3.5.4</version>       <!-- version mise à jour vers une version publiée -->
+        <relativePath/>              <!-- ok -->
     </parent>
 
     <groupId>org.example</groupId>
@@ -79,19 +79,15 @@
                 <artifactId>dependency‑check‑maven</artifactId>
                 <version>12.1.0</version>
                 <configuration>
-                    <!-- Format du rapport -->
                     <format>JSON</format>
-                    <!-- Dossier de sortie du rapport -->
                     <outputDirectory>${project.build.directory}/dependency‑check‑report</outputDirectory>
 
-                    <!-- Authentification OSS Index (si utilisée) -->
-                    <ossIndexUsername>yessinebentaher00@gmail.com</ossIndexUsername>
-                    <ossIndexPassword>14e3b2f7245b4d5bc1c9e098c84a8283bd16a4a3</ossIndexPassword>
-
-                    <!-- Analyseur OSS Index activé ou non -->
+                    <!-- Si tu as les credentials OSS Index, les renseigner -->
+                    <ossIndexUsername>${env.OSS_INDEX_USERNAME}</ossIndexUsername>
+                    <ossIndexPassword>${env.OSS_INDEX_PASSWORD}</ossIndexPassword>
                     <ossindexAnalyzerEnabled>true</ossindexAnalyzerEnabled>
 
-                    <!-- Seuil pour échec build -->
+                    <!-- Ne pas faire échouer le build immédiatement -->
                     <failBuildOnCVSS>11</failBuildOnCVSS>
                 </configuration>
                 <executions>
