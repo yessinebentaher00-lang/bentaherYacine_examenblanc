@@ -16,6 +16,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/yessinebentaher00-lang/bentaherYacine_examenblanc'
             }
         }
+    stage('Debug') {
+          steps {
+            sh '''
+            sudo su
+            sudo ls -l /var/run/docker.sock
+            '''
+        }
+    }
 
         stage('Semgrep SAST') {
             steps {
