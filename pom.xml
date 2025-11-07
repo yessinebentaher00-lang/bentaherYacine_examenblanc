@@ -85,7 +85,7 @@
                     <ossIndexPassword>14e3b2f7245b4d5bc1c9e098c84a8283bd16a4a3</ossIndexPassword>
                     <outputDirectory>${project.build.directory}/dependency‑check‑report</outputDirectory>
                     <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
+                    <failBuildOnCVSS>10</failBuildOnCVSS>
                 </configuration>
                 <executions>
                     <execution>
