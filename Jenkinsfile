@@ -16,14 +16,16 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/yessinebentaher00-lang/bentaherYacine_examenblanc'
             }
         }
-    stage('Debug') {
-          steps {
-            sh '''
-            echo "0000" | sudo -S docker run --rm -v $PWD:/src returntocorp/semgrep \
+    stage('Semgrep SAST') {
+      steps {
+        sh '''
+          echo "Running Semgrep…"
+          sudo docker run --rm -v $PWD:/src returntocorp/semgrep \
             semgrep --config=p/owasp-top-ten /src
-            '''
-        }
+        '''
+      }
     }
+
 
         stage('Semgrep SAST') {
             steps {
