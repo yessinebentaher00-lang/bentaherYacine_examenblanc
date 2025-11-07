@@ -7,14 +7,14 @@
 
     <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring‑boot‑starter‑parent</artifactId>
-        <version>3.5.5</version>       
-        <relativePath/>              
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.6</version>
+        <relativePath/>
     </parent>
 
     <groupId>org.example</groupId>
     <artifactId>benTaherYacine_examenblanc</artifactId>
-    <version>0.0.1‑SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>benTaherYacine_examenblanc</name>
     <description>benTaherYacine_examenblanc</description>
 
@@ -25,15 +25,15 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring‑boot‑starter‑data‑jpa</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring‑boot‑starter‑web</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
-            <artifactId>mysql‑connector‑j</artifactId>
+            <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -43,17 +43,18 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring‑boot‑starter‑test</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+
             <!-- SpotBugs plugin -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs‑maven‑plugin</artifactId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>4.9.8.1</version>
                 <configuration>
                     <failOnError>false</failOnError>
@@ -67,28 +68,23 @@
                     </dependency>
                     <dependency>
                         <groupId>com.h3xstream.findsecbugs</groupId>
-                        <artifactId>findsecbugs‑plugin</artifactId>
+                        <artifactId>findsecbugs-plugin</artifactId>
                         <version>1.12.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
 
-            <!-- OWASP Dependency‑Check plugin -->
+            <!-- OWASP Dependency‑Check -->
             <plugin>
                 <groupId>org.owasp</groupId>
-                <artifactId>dependency‑check‑maven</artifactId>
+                <artifactId>dependency-check-maven</artifactId>
                 <version>12.1.0</version>
                 <configuration>
                     <format>JSON</format>
-                    <outputDirectory>${project.build.directory}/dependency‑check‑report</outputDirectory>
-
-                    <!-- Si tu as les credentials OSS Index, les renseigner -->
                     <ossIndexUsername>yessinebentaher00@gmail.com</ossIndexUsername>
                     <ossIndexPassword>14e3b2f7245b4d5bc1c9e098c84a8283bd16a4a3</ossIndexPassword>
-                    <ossindexAnalyzerEnabled>true</ossindexAnalyzerEnabled>
-
-                    <!-- Ne pas faire échouer le build immédiatement -->
-                    <failBuildOnCVSS>11</failBuildOnCVSS>
+                    <outputDirectory>${project.build.directory}/dependency‑check‑report</outputDirectory>
+                    <failBuildOnCVSS>10</failBuildOnCVSS>
                 </configuration>
                 <executions>
                     <execution>
@@ -101,4 +97,5 @@
 
         </plugins>
     </build>
+
 </project>
