@@ -19,8 +19,8 @@ pipeline {
     stage('Debug') {
           steps {
             sh '''
-            sudo su
-            sudo ls -l /var/run/docker.sock
+            sudo chown root:docker /var/run/docker.sock
+            sudo chmod 666 /var/run/docker.sock
             '''
         }
     }
