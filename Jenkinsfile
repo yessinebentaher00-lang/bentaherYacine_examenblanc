@@ -25,6 +25,13 @@ pipeline {
         '''
       }
     }
+        
+    stage('SpotBugs Analysis') {
+      steps {
+        sh 'mvn clean compile spotbugs:check'
+      }
+    }
+
 
 
         stage('Build + Test') {
