@@ -62,7 +62,7 @@ pipeline {
     }
     post {
     always {
-      mail to: 'ton-email@example.com',
+      mail to: 'yessinebentaher00@gmail.com',
            subject: "Build #${env.BUILD_NUMBER} - Résultat ${currentBuild.currentResult}",
            body: "Le rapport est attaché.",
            attachmentsPattern: 'semgrep-report.json'
