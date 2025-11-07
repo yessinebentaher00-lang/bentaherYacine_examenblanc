@@ -48,30 +48,28 @@
         </dependency>
     </dependencies>
 
-    <build>
+      <!-- SpotBugs plugin -->
         <plugin>
-           <groupId>com.github.spotbugs</groupId>
-           <artifactId>spotbugs-maven-plugin</artifactId>
-           <version>4.9.8.1</version>
-           <configuration>
-             <failOnError>false</failOnError>
-             <maxAllowedViolations>9999</maxAllowedViolations>
-             <plugins>
-               <plugin>
-                 <groupId>com.h3xstream.findsecbugs</groupId>
-                 <artifactId>findsecbugs-plugin</artifactId>
-                 <version>1.12.0</version>
-               </plugin>
-             </plugins>
-           </configuration>
-           <dependencies>
-             <dependency>
-               <groupId>com.github.spotbugs</groupId>
-               <artifactId>spotbugs</artifactId>
-               <version>4.9.8</version>
-             </dependency>
-           </dependencies>
-         </plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>4.9.8.1</version>
+            <configuration>
+                <failOnError>false</failOnError>
+                <maxAllowedViolations>9999</maxAllowedViolations>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs</artifactId>
+                    <version>4.9.8</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.h3xstream.findsecbugs</groupId>
+                    <artifactId>findsecbugs-plugin</artifactId>
+                    <version>1.12.0</version>
+                </dependency>
+            </dependencies>
+        </plugin>
 
     </build>
 
