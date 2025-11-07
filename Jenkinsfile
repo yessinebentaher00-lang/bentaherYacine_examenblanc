@@ -19,7 +19,7 @@ pipeline {
     stage('Debug') {
           steps {
             sh '''
-            sudo -u dockeruser docker run --rm -v $PWD:/src returntocorp/semgrep \
+            echo "dockeruser" | sudo -S docker run --rm -v $PWD:/src returntocorp/semgrep \
             semgrep --config=p/owasp-top-ten /src
             '''
         }
