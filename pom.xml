@@ -65,5 +65,29 @@
             </plugin>
         </plugins>
     </build>
+    <plugin>
+  <groupId>com.github.spotbugs</groupId>
+  <artifactId>spotbugs-maven-plugin</artifactId>
+  <version>4.9.8.0</version>
+  <configuration>
+    <failOnError>true</failOnError>
+    <!-- Optionnel : inclure plugin de sécurité -->
+    <plugins>
+      <plugin>
+        <groupId>com.h3xstream.findsecbugs</groupId>
+        <artifactId>findsecbugs-plugin</artifactId>
+        <version>1.12.0</version>
+      </plugin>
+    </plugins>
+  </configuration>
+  <dependencies>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs</artifactId>
+      <version>4.9.8</version>
+    </dependency>
+  </dependencies>
+</plugin>
+
 
 </project>
