@@ -8,8 +8,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring‑boot‑starter‑parent</artifactId>
-        <version>3.5.4</version>       <!-- version mise à jour vers une version publiée -->
-        <relativePath/>              <!-- ok -->
+        <version>3.5.4</version>       
+        <relativePath/>              
     </parent>
 
     <groupId>org.example</groupId>
@@ -83,8 +83,8 @@
                     <outputDirectory>${project.build.directory}/dependency‑check‑report</outputDirectory>
 
                     <!-- Si tu as les credentials OSS Index, les renseigner -->
-                    <ossIndexUsername>${env.OSS_INDEX_USERNAME}</ossIndexUsername>
-                    <ossIndexPassword>${env.OSS_INDEX_PASSWORD}</ossIndexPassword>
+                    <ossIndexUsername>yessinebentaher00@gmail.com</ossIndexUsername>
+                    <ossIndexPassword>14e3b2f7245b4d5bc1c9e098c84a8283bd16a4a3</ossIndexPassword>
                     <ossindexAnalyzerEnabled>true</ossindexAnalyzerEnabled>
 
                     <!-- Ne pas faire échouer le build immédiatement -->
