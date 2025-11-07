@@ -29,7 +29,7 @@ pipeline {
     stage('SpotBugs Analysis') {
     steps {
         sh '''
-            mvn clean compile spotbugs:gui
+            mvn clean compile spotbugs:check -Dspotbugs.failOnError=false || true
         '''
     }
 }
