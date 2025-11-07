@@ -17,6 +17,15 @@ pipeline {
             }
         }
 
+        stage('Semgrep SAST') {
+            steps {
+                sh '''
+                    echo "Running Semgrep for Java OWASP Top 10 vulnerabilities..."
+                    docker run --rm -v $PWD:/src returntocorp/semgrep semgrep --config=p/java/owasp-top-ten /src
+                '''
+            }
+        }
+
         stage('Build + Test') {
             steps {
                 sh 'mvn clean verify'
@@ -26,7 +35,7 @@ pipeline {
         stage('Sonar Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=devops_java -Dsonar.host.url=http://192.168.50.4:9000 -Dsonar.login=${SONAR_TOKEN}s"
+                    sh "mvn sonar:sonar -Dsonar.projectKey=devops_java -Dsonar.host.url=http://192.168.50.4:9000 -Dsonar.login=${SONAR_TOKEN}"
                 }
             }
         }
