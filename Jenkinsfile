@@ -21,8 +21,9 @@ pipeline {
         sh '''
           echo "Running Semgrep…"
           sudo docker run --rm -v $PWD:/src returntocorp/semgrep \
-            semgrep --config=p/owasp-top-ten /src
+            semgrep --config=p/owasp-top-ten /src > semgrep-report.json
         '''
+        archiveArtifacts artifacts: 'semgrep-report.json'
       }
     }
         
@@ -58,5 +59,12 @@ pipeline {
                 }
             }
         }
+    }
+    post {
+    always {
+      mail to: 'ton-email@example.com',
+           subject: "Build #${env.BUILD_NUMBER} - Résultat ${currentBuild.currentResult}",
+           body: "Le rapport est attaché.",
+           attachmentsPattern: 'semgrep-report.json'
     }
 }
