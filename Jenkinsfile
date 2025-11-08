@@ -51,6 +51,38 @@ pipeline {
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
           }
         }
+                stage('Run WebApp') {
+            steps {
+                sh '''
+                nohup java -jar target/*.jar > app.log 2>&1 &
+                for i in {1..30}; do
+                    if curl -s http:// > /dev/null; then
+                        echo "Application is up!"
+                        exit 0
+                    fi
+                    echo "Waiting app to be ready..."
+                    sleep 2
+                done
+                echo "Application failed to start!"
+                exit 1
+                '''
+            }
+        }
+
+        stage('DAST - ZAP Baseline') {
+            steps {
+                sh '''
+                docker run --rm -t ghcr.io/zaproxy/zaproxy:stable \
+                zap-baseline.py -t http://localhost:8080 -m 3 -r zap_report.html
+                '''
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'zap_report.html'
+                }
+            }
+        }
+
         stage('Sonar Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
