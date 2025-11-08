@@ -56,7 +56,7 @@ pipeline {
                 sh '''
                 nohup java -jar target/*.jar > app.log 2>&1 &
                 for i in {1..30}; do
-                    if curl -s http://localhost:8086/api/products > /dev/null; then
+                    if curl -s http://localhost:8086/api/products/chercher/test  > /dev/null; then
                         echo "Application is up!"
                         exit 0
                     fi
@@ -73,7 +73,7 @@ pipeline {
             steps {
                 sh '''
                 docker run --rm -t ghcr.io/zaproxy/zaproxy:stable \
-                zap-baseline.py -t http://localhost:8080 -m 3 -r zap_report.html
+                zap-baseline.py -t http://localhost:8086/api/products/ -m 3 -r zap_report.html
                 '''
             }
             post {
